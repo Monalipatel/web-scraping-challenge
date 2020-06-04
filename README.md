@@ -24,4 +24,4 @@ Flask web application that scrapes various websites for data related to the Mars
 * Script visits the USGS Astrogeology site and obtains the full resolution images for each of Mar's hemispheres.
 
 
-![](Missions_to_Mars/Images/part_1.jpg)
+![](Missions_to_Mars/Images/part_1.jpg)  ![](Missions_to_Mars/Images/part_2.jpg)
