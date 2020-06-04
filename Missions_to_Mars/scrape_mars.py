@@ -91,15 +91,14 @@ def twitter_weather(browser):
 
 #Mars Facts
 def mars_facts():
-
     try:
-        df = pd.read_html("https://space-facts.com/mars/")[0]
+        mars_df = pd.read_html("https://space-facts.com/mars/")[0]
     except BaseException:
         return None
-    df.columns=["Description", "Value"]
-    df.set_index("Description", inplace=True)
+    mars_df.columns=["Description", "Value"]
+    mars_df.set_index("Description", inplace=True)
 
-    return df.to_html(classes="table table-striped")
+    return mars_df.to_html(classes="table table-striped") 
 
 
 #Mars Hemispheres
@@ -131,6 +130,19 @@ def hemisphere_image_urls(browser):
         browser.back()
     return hemisphere_image_urls
 
+def scrape_hemisphere(html_text):
+    hemisphere_soup = BeautifulSoup(html_text, "html.parser")
+    try: 
+        title_element = hemisphere_soup.find("h2", class_="title").get_text()
+        sample_element = hemisphere_soup.find("a", text="Sample").get("href")
+    except AttributeError:
+        title_element = None
+        sample_element = None 
+    hemisphere = {
+        "title": title_element,
+        "img_url": sample_element
+    }
+    return hemisphere
 
 if __name__ == "__main__":
     print(scrape())

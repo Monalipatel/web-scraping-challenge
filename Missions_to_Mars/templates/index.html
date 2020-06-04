@@ -35,7 +35,7 @@
         <div class="col-lg-8 col-md-8 col-sm-12">
         <h4>Featured Mars Image</h4>
             <!-- If Images are False/None/Non-Existent, Then Default to Error Message -->
-            <img src="{{mars.featured_image}}" class="img-responsive" style="max-width:100%; max-height: auto;" alt="Mars Featured Image"/>
+            <img src="{{mars.featured_image}}" class="thumbnail img-responsive" style="max-width:100%; max-height: auto;" alt="Mars Featured Image"/>
         </div>
         <!-- Mars Weather -->
         <div class="col-lg-4 col-md-4 col-sm-12" id="mars-weather">
@@ -57,26 +57,28 @@
     </div>
 </div>
 <!-- Mars Hemispheres -->
+
 <h4 style="padding-top: 50px; margin-top: 100px; text-align: center;">Mars Hemispheres</h4>
-<div class="card-deck">
-    <hr>
-    <div class="col-md-12">
-        <div class="row" id="mars-hemispheres">
-            {% for hemisphere in mars.hemispheres %}
-            <div class="col-md-6">
-                <div class="card text-white bg-danger" style="margin: 30px;">
-                    <!-- If Images are False/None/Non-Existent, Then Default to Error Message -->
-                    <img class="card-img-top" src="{{mars.hemisphere[0]['img_url']}}" alt="..."/>
-                    <div class="card-body">
-                        <p class="card-text">{{hemisphere.title}}</p>
+        <div class="card-deck">
+            <hr>
+            <div class="col-md-12">
+                <div class="row" id="mars-hemispheres">
+                    {% for hemisphere in mars.hemisphere %}
+                    <div class="col-md-6">
+                        <div class="card text-white bg-danger" style="margin: 30px;">
+                            <!-- If Images are False/None/Non-Existent, Then Default to Error Message -->
+                            <img class="card-img-top" src="{{hemisphere.img_url | default('static/images/error.png', true)}}" alt="..."/>
+                            <div class="card-body">
+                                <p class="card-text">{{hemisphere.title}}</p>
+                            </div>
+                        </div>
                     </div>
+                    {% endfor %}
                 </div>
             </div>
-            {% endfor %}
         </div>
     </div>
-</div>
-</div>
+
 <!-- Bootstrap JavaScript -->
 <!-- jQuery, Popper.js & Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
